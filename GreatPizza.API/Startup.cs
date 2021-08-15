@@ -28,9 +28,6 @@ namespace GreatPizza.API
     {
       services.AddControllers();
 
-      //// Register the Swagger generator, defining 1 or more Swagger documents
-      //services.AddSwaggerGen();
-
       // Register the Swagger generator, defining 1 or more Swagger documents
       services.AddSwaggerGen(options =>
       {
