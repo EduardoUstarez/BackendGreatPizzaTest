@@ -20,25 +20,20 @@ namespace GreatPizza.API.Controllers
     }
 
     /// <summary>
-    /// Se usa para probar
+    /// Generic method to test Rest API
     /// </summary>
     [HttpGet]
     public ActionResult<string> postTest()
     {
-      try
-      {
-        throw new Exception("Error");
-      } catch
-      {
-        _ILog.LogException("Dio un error");
-      }
       return "true";
     }
 
     /// <summary>
-    /// Method to get pizzas
+    /// Method to get a list of pizzas
     /// </summary>
-    /// <returns>Pizzas</returns>
+    /// <remarks>
+    /// This method get all pizzas registered in the database
+    ///</remarks>
     [HttpGet("Getpizzas")]
     public ActionResult<Models.Main.Pizzas.Response> GetPizzas()
     {
@@ -56,9 +51,11 @@ namespace GreatPizza.API.Controllers
     }
 
     /// <summary>
-    /// Method to get toppings
+    /// Method to get a list of toppings
     /// </summary>
-    /// <returns>Toppings</returns>
+    /// <remarks>
+    /// This method get all toppings registered in the database
+    ///</remarks>
     [HttpGet("Gettoppings")]
     public ActionResult<Models.Main.Toppings.Response> GetToppings()
     {
@@ -75,9 +72,23 @@ namespace GreatPizza.API.Controllers
     }
 
     /// <summary>
-    /// Method to get toppings
+    /// Method to Add pizza
     /// </summary>
-    /// <returns>Toppings</returns>
+    /// <remarks>
+    /// This method add a pizza to the list of pizzas
+    ///</remarks>
+    [HttpPost("AddPizza")]
+    public ActionResult<String> AddPizza(string pizzaDescription)
+    {
+      return "true";
+    }
+
+    /// <summary>
+    /// Method to delete pizza
+    /// </summary>
+    /// <remarks>
+    /// This method delete a pizza from the list of pizzas
+    ///</remarks>
     [HttpDelete("DeletePizza/{id}")]
     public ActionResult<String> DeletePizza(long id)
     {
