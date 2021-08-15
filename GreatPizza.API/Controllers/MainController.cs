@@ -42,7 +42,16 @@ namespace GreatPizza.API.Controllers
     [HttpGet("Getpizzas")]
     public ActionResult<Models.Main.Pizzas.Response> GetPizzas()
     {
-      Models.Main.Pizzas.Response response = Models.Main.Pizzas.Get();
+      Models.Main.Pizzas.Response response = new Models.Main.Pizzas.Response();
+      try
+      {
+        response = Models.Main.Pizzas.Get();
+      } catch (Exception ex)
+      {
+        _ILog.LogException(ex.Message);
+        response.correct = false;        
+      }
+    
       return response;
     }
 
@@ -53,7 +62,15 @@ namespace GreatPizza.API.Controllers
     [HttpGet("Gettoppings")]
     public ActionResult<Models.Main.Toppings.Response> GetToppings()
     {
-      Models.Main.Toppings.Response response = Models.Main.Toppings.Get();
+      Models.Main.Toppings.Response response = new Models.Main.Toppings.Response();
+      try
+      {
+        response = Models.Main.Toppings.Get();
+      } catch (Exception ex)
+      {
+        _ILog.LogException(ex.Message);
+        response.correct = false;
+      }
       return response;
     }
 
