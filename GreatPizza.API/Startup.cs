@@ -11,6 +11,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Swashbuckle;
 using Microsoft.OpenApi.Models;
+using System.IO;
+using System.Reflection;
 
 namespace GreatPizza.API
 {
@@ -34,7 +36,15 @@ namespace GreatPizza.API
       // Register the Swagger generator, defining 1 or more Swagger documents
       services.AddSwaggerGen(options =>
       {
-   
+        //Determine base path for the application.
+
+        var basePath = AppContext.BaseDirectory;
+        var assemblyName = System.Reflection.Assembly.GetEntryAssembly().GetName().Name;
+        var fileName = System.IO.Path.GetFileName(assemblyName + ".xml");
+        //Set the comments path for the swagger json and ui.
+        options.IncludeXmlComments(System.IO.Path.Combine(basePath, fileName));
+
+
         options.CustomSchemaIds(type => type.ToString());
 
         options.SwaggerDoc("v1",
