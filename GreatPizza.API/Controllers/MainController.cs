@@ -21,9 +21,9 @@ namespace GreatPizza.API.Controllers
     }
 
     /// <summary>
-    /// hola
+    /// Method to get pizzas
     /// </summary>
-    /// <returns>1</returns>
+    /// <returns>Pizzas</returns>
     [HttpGet("Getpizzas")]
     public ActionResult<Models.Main.Pizzas.Response> GetPizzas()
     {
@@ -32,15 +32,24 @@ namespace GreatPizza.API.Controllers
     }
 
     /// <summary>
-    /// hola
+    /// Method to get toppings
     /// </summary>
-    /// <returns>2</returns>
-    //[HttpGet]
-    //[Route("[action]")]
-    //public ActionResult<Models.Main.Toppings.Response> GetToppings()
-    //{
-    //  Models.Main.Toppings.Response response = Models.Main.Toppings.Get();
-    //  return response;
-    //}
+    /// <returns>Toppings</returns>
+    [HttpGet("Gettoppings")]
+    public ActionResult<Models.Main.Toppings.Response> GetToppings()
+    {
+      Models.Main.Toppings.Response response = Models.Main.Toppings.Get();
+      return response;
+    }
+
+    /// <summary>
+    /// Method to get toppings
+    /// </summary>
+    /// <returns>Toppings</returns>
+    [HttpDelete("DeletePizza/{id}")]
+    public ActionResult<String> DeletePizza(long id)
+    {
+      return "true";
+    }
   }
 }
