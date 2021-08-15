@@ -20,8 +20,7 @@ namespace GreatPizza.API.Models
       public static Response Get()
       {
         Response response = new Response();
-        try
-        {
+
           GreatPizza.Core.DTOs.Data.Pizzas.output dtoPizzas = GreatPizza.Core.DTOs.Data.Pizzas.Get("");
 
           foreach (var dtopizza in dtoPizzas.pizzas)
@@ -34,13 +33,8 @@ namespace GreatPizza.API.Models
           }
 
           response.correct = true;
-        }
-        catch (Exception ex)
-        {
-          response.correct = false;
-          response.message = ex.Message;
+        
 
-        }
 
         return response;
       }

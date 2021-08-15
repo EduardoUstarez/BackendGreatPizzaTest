@@ -20,8 +20,7 @@ namespace GreatPizza.Core.DTOs
       public static output Get(string _connectionString)
       {
         output response = new output();
-        try
-        {
+ 
           using (var context = new Entities.greatpizzaDBContext())
           {
 
@@ -37,13 +36,7 @@ namespace GreatPizza.Core.DTOs
 
             response.correct = true;
           }
-        }
-        catch (Exception ex)
-        {
-          response.correct = false;
-          response.message = ex.Message;
-        }
-
+        
         return response;
       }
     }
@@ -63,8 +56,7 @@ namespace GreatPizza.Core.DTOs
       public static output Get(string _connectionString)
       {
         output response = new output();
-        try
-        {
+
           using (var context = new Entities.greatpizzaDBContext())
           {
 
@@ -81,13 +73,7 @@ namespace GreatPizza.Core.DTOs
             response.correct = true;
 
           }
-        }
-        catch (Exception ex)
-        {
-          response.correct = false;
-          response.message = ex.Message;
-        }
-
+        
         return response;
       }
     }
