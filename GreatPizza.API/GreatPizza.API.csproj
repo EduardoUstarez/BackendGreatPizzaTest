@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GreatPizza.Core\GreatPizza.Core.csproj" />
+    <ProjectReference Include="..\GreatPizza.Logger\GreatPizza.Logger.csproj" />
   </ItemGroup>
 
 

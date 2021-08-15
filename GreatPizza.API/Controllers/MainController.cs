@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GreatPizza.Logger;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,12 +12,26 @@ namespace GreatPizza.API.Controllers
   [ApiController]
   public class MainController : ControllerBase
   {
+    private ILog _ILog;
+
+    public MainController()
+    {
+      _ILog = Log.GetInstance;
+    }
+
     /// <summary>
     /// Se usa para probar
     /// </summary>
     [HttpGet]
     public ActionResult<string> postTest()
     {
+      try
+      {
+        throw new Exception("Error");
+      } catch
+      {
+        _ILog.LogException("Dio un error");
+      }
       return "true";
     }
 

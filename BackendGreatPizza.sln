@@ -9,7 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2E370D25
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GreatPizza.UniteTests", "GreatPizza.UniteTests\GreatPizza.UniteTests.csproj", "{D4E97D12-6352-419C-8A5C-354C7F2BB450}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreatPizza.Core", "GreatPizza.Core\GreatPizza.Core.csproj", "{92D423EB-7069-4F82-B7AF-5186D7AAFFB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GreatPizza.Core", "GreatPizza.Core\GreatPizza.Core.csproj", "{92D423EB-7069-4F82-B7AF-5186D7AAFFB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreatPizza.Logger", "GreatPizza.Logger\GreatPizza.Logger.csproj", "{E1472A39-C72B-4348-A8EE-026507798BC0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{92D423EB-7069-4F82-B7AF-5186D7AAFFB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92D423EB-7069-4F82-B7AF-5186D7AAFFB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92D423EB-7069-4F82-B7AF-5186D7AAFFB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1472A39-C72B-4348-A8EE-026507798BC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1472A39-C72B-4348-A8EE-026507798BC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1472A39-C72B-4348-A8EE-026507798BC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1472A39-C72B-4348-A8EE-026507798BC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
