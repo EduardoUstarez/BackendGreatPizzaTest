@@ -115,10 +115,26 @@ namespace GreatPizza.API.Controllers
     /// <remarks>
     /// This method delete a pizza from the list of pizzas
     ///</remarks>
-    [HttpDelete("DeletePizza/{id}")]
-    public ActionResult<String> DeletePizza(long id)
+    [HttpDelete("DeletePizza/{pizzaid}")]
+    public ActionResult<Models.Main.Pizzas.Response> DeletePizza(long pizzaid)
     {
-      return "true";
+      Models.Main.DeletePizza.Response responseDelete = new Models.Main.DeletePizza.Response();
+      Models.Main.Pizzas.Response response = new Models.Main.Pizzas.Response();
+      try
+      {
+        responseDelete = Models.Main.DeletePizza.Delete(pizzaid);
+        if (responseDelete.correct)
+        {
+          response = Models.Main.Pizzas.Get();
+        }
+      }
+      catch (Exception ex)
+      {
+        _ILog.LogException(ex.Message);
+        response.correct = false;
+        response.message = ex.Message;
+      }
+      return response;
     }
   }
 }
