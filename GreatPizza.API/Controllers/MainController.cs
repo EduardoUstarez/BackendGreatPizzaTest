@@ -72,7 +72,7 @@ namespace GreatPizza.API.Controllers
     }
 
     /// <summary>
-    /// Method to Add pizza
+    /// Method to Add a pizza
     /// </summary>
     /// <remarks>
     /// This method add a pizza to the list of pizzas
@@ -84,7 +84,7 @@ namespace GreatPizza.API.Controllers
     }
 
     /// <summary>
-    /// Method to delete pizza
+    /// Method to delete a pizza
     /// </summary>
     /// <remarks>
     /// This method delete a pizza from the list of pizzas
