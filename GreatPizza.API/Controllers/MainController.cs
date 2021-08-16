@@ -100,18 +100,36 @@ namespace GreatPizza.API.Controllers
     /// <summary>
     /// Method to Add a pizza
     /// </summary>
+    /// <param name="addPizzaRequest"></param>
     /// <remarks>
     /// This method add a pizza to the list of pizzas
     ///</remarks>
     [HttpPost("AddPizza")]
-    public ActionResult<String> AddPizza(string pizzaDescription)
+    public ActionResult<Models.Main.Pizzas.Response> AddPizza(Models.Main.AddPizza.Request addPizzaRequest)
     {
-      return "true";
+      Models.Main.AddPizza.Response responseAdd = new Models.Main.AddPizza.Response();
+      Models.Main.Pizzas.Response response = new Models.Main.Pizzas.Response();
+      try
+      {
+        responseAdd = Models.Main.AddPizza.Add(addPizzaRequest.pizzadescription);
+        if (responseAdd.correct)
+        {
+          response = Models.Main.Pizzas.Get();
+        }
+      }
+      catch (Exception ex)
+      {
+        _ILog.LogException(ex.Message);
+        response.correct = false;
+        response.message = ex.Message;
+      }
+      return response;
     }
 
     /// <summary>
     /// Method to delete a pizza
     /// </summary>
+    /// <param name="pizzaid"></param>
     /// <remarks>
     /// This method delete a pizza from the list of pizzas
     ///</remarks>

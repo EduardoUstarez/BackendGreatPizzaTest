@@ -34,10 +34,11 @@
             This method get an specific detail of a pizza
             </remarks>
         </member>
-        <member name="M:GreatPizza.API.Controllers.MainController.AddPizza(System.String)">
+        <member name="M:GreatPizza.API.Controllers.MainController.AddPizza(GreatPizza.API.Models.Main.AddPizza.Request)">
              <summary>
              Method to Add a pizza
              </summary>
+             <param name="addPizzaRequest"></param>
              <remarks>
              This method add a pizza to the list of pizzas
             </remarks>
@@ -46,6 +47,7 @@
              <summary>
              Method to delete a pizza
              </summary>
+             <param name="pizzaid"></param>
              <remarks>
              This method delete a pizza from the list of pizzas
             </remarks>
