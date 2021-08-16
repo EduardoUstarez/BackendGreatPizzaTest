@@ -128,5 +128,29 @@ namespace GreatPizza.API.Models
         return response;
       }
     }
+
+
+
+    public class AddPizza
+    {
+      public class Request
+      {
+        public string pizzadescription { get; set; }
+      }
+      public class Response : Models.Common
+      {
+      }
+      public static Response Add(string pizzadescription)
+      {
+        Response response = new Response();
+
+        GreatPizza.Core.DTOs.Data.AddPizza.output dtoAddPizza = GreatPizza.Core.DTOs.Data.AddPizza.Add(pizzadescription);
+
+        response.correct = dtoAddPizza.correct;
+        response.message = dtoAddPizza.message;
+
+        return response;
+      }
+    }
   }
 }

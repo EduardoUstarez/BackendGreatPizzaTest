@@ -146,5 +146,35 @@ namespace GreatPizza.Core.DTOs
       }
     }
 
+
+    public class AddPizza
+    {
+      public class input
+      {
+        public string pizzadescription { get; set; }
+      }
+      public class output : Definition.Common
+      {
+      }
+
+      public static output Add(string _pizzadescription)
+      {
+        output response = new output();
+
+        Entities.Pizzas PizzaToInsert = new Entities.Pizzas()
+        {
+          Description = _pizzadescription,
+        };
+
+        Entities.greatpizzaDBContext DB = new Entities.greatpizzaDBContext();
+        DB.Pizzas.Add(PizzaToInsert);
+        DB.SaveChanges();
+
+        response.correct = true;
+
+        return response;
+      }
+    }
+
   }
 }
