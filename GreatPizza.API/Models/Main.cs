@@ -21,19 +21,19 @@ namespace GreatPizza.API.Models
       {
         Response response = new Response();
 
-          GreatPizza.Core.DTOs.Data.Pizzas.output dtoPizzas = GreatPizza.Core.DTOs.Data.Pizzas.Get("");
+        GreatPizza.Core.DTOs.Data.Pizzas.output dtoPizzas = GreatPizza.Core.DTOs.Data.Pizzas.Get("");
 
-          foreach (var dtopizza in dtoPizzas.pizzas)
-          {
-            Models.Pizza item = new Models.Pizza();
-            item.pizzaid = dtopizza.pizzaid;
-            item.description = dtopizza.description;
+        foreach (var dtopizza in dtoPizzas.pizzas)
+        {
+          Models.Pizza item = new Models.Pizza();
+          item.pizzaid = dtopizza.pizzaid;
+          item.description = dtopizza.description;
 
-            response.pizzas.Add(item);
-          }
+          response.pizzas.Add(item);
+        }
 
-          response.correct = true;
-        
+        response.correct = true;
+
 
 
         return response;
@@ -54,27 +54,53 @@ namespace GreatPizza.API.Models
       public static Response Get()
       {
         Response response = new Response();
-        try
+
+        GreatPizza.Core.DTOs.Data.Toppings.output dtoToppings = GreatPizza.Core.DTOs.Data.Toppings.Get("");
+
+        foreach (var dtotopping in dtoToppings.toppings)
         {
-          GreatPizza.Core.DTOs.Data.Toppings.output dtoToppings = GreatPizza.Core.DTOs.Data.Toppings.Get("");
+          Models.Topping item = new Models.Topping();
+          item.toppingid = dtotopping.toppingid;
+          item.description = dtotopping.description;
 
-          foreach (var dtotopping in dtoToppings.toppings)
-          {
-            Models.Topping item = new Models.Topping();
-            item.toppingid = dtotopping.toppingid;
-            item.description = dtotopping.description;
-
-            response.toppings.Add(item);
-          }
-
-          response.correct = true;
+          response.toppings.Add(item);
         }
-        catch (Exception ex)
+
+        response.correct = true;
+
+
+        return response;
+      }
+    }
+
+
+    public class PizzaDetail
+    {
+      public class Request
+      {
+      }
+      public class Response : Models.Common
+      {
+        public Models.Pizza pizzaDetail { get; set; } = new Models.Pizza();
+      }
+      public static Response Get(long pizzaid)
+      {
+        Response response = new Response();
+
+        GreatPizza.Core.DTOs.Data.PizzaDetail.output dtoPizzaDetail = GreatPizza.Core.DTOs.Data.PizzaDetail.Get(pizzaid);
+
+        response.pizzaDetail.pizzaid = dtoPizzaDetail.pizzaDetail.pizzaid;
+        response.pizzaDetail.description = dtoPizzaDetail.pizzaDetail.description;
+
+        foreach (var item in dtoPizzaDetail.pizzaDetail.toppings)
         {
-          response.correct = false;
-          response.message = ex.Message;
-
+          Models.Topping topping = new Models.Topping();
+          topping.toppingid = item.toppingid;
+          topping.description = item.description;
+          response.pizzaDetail.toppings.Add(topping);
         }
+
+        response.correct = true;
 
         return response;
       }

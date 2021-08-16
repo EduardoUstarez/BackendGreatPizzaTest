@@ -25,9 +25,16 @@
              This method get all toppings registered in the database
             </remarks>
         </member>
+        <member name="M:GreatPizza.API.Controllers.MainController.GetPizza(System.Int64)">
+            <summary>
+            Method to Get pizza detail
+            </summary>
+            <param name="pizzaid"></param>
+            <returns></returns>
+        </member>
         <member name="M:GreatPizza.API.Controllers.MainController.AddPizza(System.String)">
              <summary>
-             Method to Add pizza
+             Method to Add a pizza
              </summary>
              <remarks>
              This method add a pizza to the list of pizzas
@@ -35,7 +42,7 @@
         </member>
         <member name="M:GreatPizza.API.Controllers.MainController.DeletePizza(System.Int64)">
              <summary>
-             Method to delete pizza
+             Method to delete a pizza
              </summary>
              <remarks>
              This method delete a pizza from the list of pizzas

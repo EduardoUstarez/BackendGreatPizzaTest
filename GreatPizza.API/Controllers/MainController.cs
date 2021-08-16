@@ -44,7 +44,8 @@ namespace GreatPizza.API.Controllers
       } catch (Exception ex)
       {
         _ILog.LogException(ex.Message);
-        response.correct = false;        
+        response.correct = false;
+        response.message = ex.Message;
       }
     
       return response;
@@ -67,6 +68,29 @@ namespace GreatPizza.API.Controllers
       {
         _ILog.LogException(ex.Message);
         response.correct = false;
+        response.message = ex.Message;
+      }
+      return response;
+    }
+
+    /// <summary>
+    /// Method to Get pizza detail
+    /// </summary>
+    /// <param name="pizzaid"></param>
+    /// <returns></returns>
+    [HttpGet("GetPizza/{pizzaid}")]
+    public ActionResult<Models.Main.PizzaDetail.Response> GetPizza(long pizzaid)
+    {
+      Models.Main.PizzaDetail.Response response = new Models.Main.PizzaDetail.Response();
+      try
+      {
+        response = Models.Main.PizzaDetail.Get(pizzaid);
+      }
+      catch (Exception ex)
+      {
+        _ILog.LogException(ex.Message);
+        response.correct = false;
+        response.message = ex.Message;
       }
       return response;
     }
