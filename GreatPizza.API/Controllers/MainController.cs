@@ -74,10 +74,12 @@ namespace GreatPizza.API.Controllers
     }
 
     /// <summary>
-    /// Method to Get pizza detail
+    /// Method to Get a pizza detail
     /// </summary>
     /// <param name="pizzaid"></param>
-    /// <returns></returns>
+    /// <remarks>
+    /// This method get an specific detail of a pizza
+    /// </remarks>
     [HttpGet("GetPizza/{pizzaid}")]
     public ActionResult<Models.Main.PizzaDetail.Response> GetPizza(long pizzaid)
     {

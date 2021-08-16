@@ -27,10 +27,12 @@
         </member>
         <member name="M:GreatPizza.API.Controllers.MainController.GetPizza(System.Int64)">
             <summary>
-            Method to Get pizza detail
+            Method to Get a pizza detail
             </summary>
             <param name="pizzaid"></param>
-            <returns></returns>
+            <remarks>
+            This method get an specific detail of a pizza
+            </remarks>
         </member>
         <member name="M:GreatPizza.API.Controllers.MainController.AddPizza(System.String)">
              <summary>
