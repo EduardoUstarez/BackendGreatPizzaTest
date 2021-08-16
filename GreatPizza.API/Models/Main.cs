@@ -104,6 +104,29 @@ namespace GreatPizza.API.Models
 
         return response;
       }
+
+    }
+
+
+    public class DeletePizza
+    {
+      public class Request
+      {
+      }
+      public class Response : Models.Common
+      {
+      }
+      public static Response Delete(long pizzaid)
+      {
+        Response response = new Response();
+
+        GreatPizza.Core.DTOs.Data.PizzaDelete.output dtoPizzaDelete = GreatPizza.Core.DTOs.Data.PizzaDelete.Delete(pizzaid);
+
+        response.correct = dtoPizzaDelete.correct;
+        response.message = dtoPizzaDelete.message;
+
+        return response;
+      }
     }
   }
 }
