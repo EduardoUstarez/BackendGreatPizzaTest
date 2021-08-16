@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace GreatPizza.Core.DTOs
 {
@@ -74,6 +75,45 @@ namespace GreatPizza.Core.DTOs
 
           }
         
+        return response;
+      }
+    }
+
+
+    public class PizzaDetail
+    {
+      public class input
+      {
+        public long pizzaid { get; set; }
+      }
+      public class output : Definition.Common
+      {
+        public Definition.Pizza pizzaDetail { get; set; } = new Definition.Pizza();
+      }
+
+      public static output Get(long _pizzaid)
+      {
+        output response = new output();
+
+         
+          Entities.greatpizzaDBContext DB = new Entities.greatpizzaDBContext();
+          Entities.Pizzas PizzaFound = DB.Pizzas.SingleOrDefault(pizza => pizza.Pizzaid == _pizzaid);
+          response.pizzaDetail.pizzaid = PizzaFound.Pizzaid;
+          response.pizzaDetail.description = PizzaFound.Description;
+          var PizzaToppings = DB.Pizzatoppings.Where(pizza => pizza.Pizzaid == _pizzaid).ToList();
+          
+          foreach (var item in PizzaToppings) 
+          {
+            Definition.Topping Topping = new Definition.Topping();
+            Topping.toppingid = item.Toppingid;
+            Topping.description = DB.Toppings.SingleOrDefault(topping => topping.Toppingid == Topping.toppingid).Description;
+            response.pizzaDetail.toppings.Add(Topping);
+          }
+     
+        response.correct = true;
+
+        
+
         return response;
       }
     }

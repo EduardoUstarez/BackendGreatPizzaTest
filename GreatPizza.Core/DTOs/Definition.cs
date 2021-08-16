@@ -15,7 +15,7 @@ namespace GreatPizza.Core.DTOs
     {
       public long pizzaid { get; set; }
       public string description { get; set; }
-      public List<Topping> toppings { get; set; }
+      public List<Topping> toppings { get; set; } = new List<Topping>();
     }
 
     public class Topping

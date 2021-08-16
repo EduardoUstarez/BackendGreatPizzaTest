@@ -30,9 +30,6 @@ namespace GreatPizza.API
     {
       services.AddControllers();
 
-      //// Register the Swagger generator, defining 1 or more Swagger documents
-      //services.AddSwaggerGen();
-
       // Register the Swagger generator, defining 1 or more Swagger documents
       services.AddSwaggerGen(options =>
       {
@@ -63,7 +60,7 @@ namespace GreatPizza.API
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
 
-      if (env.IsDevelopment())
+      if (env.IsDevelopment() || env.IsProduction())
       {
         app.UseDeveloperExceptionPage();
 
@@ -75,7 +72,7 @@ namespace GreatPizza.API
 
         app.UseSwaggerUI(c =>
         {
-          c.SwaggerEndpoint("../swagger/v1/swagger.json", "MyAPI V1");
+          c.SwaggerEndpoint("../swagger/v1/swagger.json", "GreatPizzaAPI V1");
         });
       }
 
