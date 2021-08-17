@@ -176,5 +176,38 @@ namespace GreatPizza.Core.DTOs
       }
     }
 
+
+
+    public class AddToppingToPizza
+    {
+      public class input
+      {
+        public long pizzaid { get; set; }
+        public long toppingid { get; set; }
+      }
+      public class output : Definition.Common
+      {
+      }
+
+      public static output Add(long _pizzaid, long _toppingid)
+      {
+        output response = new output();
+
+        Entities.Pizzatoppings ToppgingPizzaToInsert = new Entities.Pizzatoppings()
+        {
+          Pizzaid = _pizzaid,
+          Toppingid = _toppingid,
+        };
+
+        Entities.greatpizzaDBContext DB = new Entities.greatpizzaDBContext();
+        DB.Pizzatoppings.Add(ToppgingPizzaToInsert);
+        DB.SaveChanges();
+
+        response.correct = true;
+
+        return response;
+      }
+    }
+
   }
 }

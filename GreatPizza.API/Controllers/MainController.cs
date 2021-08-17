@@ -154,5 +154,34 @@ namespace GreatPizza.API.Controllers
       }
       return response;
     }
+
+
+
+
+    /// <summary>
+    /// Method to add topping to pizza
+    /// </summary>
+    /// <param name="addToppingPizzaRequest"></param>
+    /// <remarks>
+    /// This method add a topping to an specific pizza
+    ///</remarks>
+    [HttpPost("AddToppingToPizza")]
+    public ActionResult<Models.Main.PizzaDetail.Response> AddToppingToPizza(Models.Main.AddToppingToPizza.Request addToppingPizzaRequest)
+    {
+      Models.Main.AddToppingToPizza.Response responseAdd = new Models.Main.AddToppingToPizza.Response();
+      Models.Main.PizzaDetail.Response response = new Models.Main.PizzaDetail.Response();
+      try
+      {
+        responseAdd = Models.Main.AddToppingToPizza.Add(addToppingPizzaRequest.pizzaid, addToppingPizzaRequest.toppingid);
+        response = Models.Main.PizzaDetail.Get(addToppingPizzaRequest.pizzaid);
+      }
+      catch (Exception ex)
+      {
+        _ILog.LogException(ex.Message);
+        response.correct = false;
+        response.message = ex.Message;
+      }
+      return response;
+    }
   }
 }
