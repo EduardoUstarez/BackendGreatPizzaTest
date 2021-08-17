@@ -178,7 +178,26 @@ namespace GreatPizza.API.Models
     }
 
 
+    public class DeleteTopping
+    {
+      public class Request
+      {
+      }
+      public class Response : Models.Common
+      {
+      }
+      public static Response Delete(long toppingid)
+      {
+        Response response = new Response();
 
+        GreatPizza.Core.DTOs.Data.DeleteTopping.output dtoDeleteTopping = GreatPizza.Core.DTOs.Data.DeleteTopping.Delete(toppingid);
+
+        response.correct = dtoDeleteTopping.correct;
+        response.message = dtoDeleteTopping.message;
+
+        return response;
+      }
+    }
 
 
 

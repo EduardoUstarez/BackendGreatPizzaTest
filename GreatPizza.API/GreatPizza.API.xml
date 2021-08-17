@@ -61,5 +61,14 @@
              This method add a topping to an specific pizza
             </remarks>
         </member>
+        <member name="M:GreatPizza.API.Controllers.MainController.DeleteTopping(System.Int64)">
+             <summary>
+             Method to delete a topping
+             </summary>
+             <param name="toppingid"></param>
+             <remarks>
+             This method delete a topping from the list of toppings
+            </remarks>
+        </member>
     </members>
 </doc>

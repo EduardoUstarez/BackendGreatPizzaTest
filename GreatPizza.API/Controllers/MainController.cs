@@ -183,5 +183,36 @@ namespace GreatPizza.API.Controllers
       }
       return response;
     }
+
+
+
+
+    /// <summary>
+    /// Method to delete a topping
+    /// </summary>
+    /// <param name="toppingid"></param>
+    /// <remarks>
+    /// This method delete a topping from the list of toppings
+    ///</remarks>
+    [HttpDelete("DeleteTopping/{toppingid}")]
+    public ActionResult<Models.Main.Toppings.Response> DeleteTopping(long toppingid)
+    {
+      Models.Main.DeleteTopping.Response responseDelete = new Models.Main.DeleteTopping.Response();
+      Models.Main.Toppings.Response response = new Models.Main.Toppings.Response();
+      try
+      {
+        responseDelete = Models.Main.DeleteTopping.Delete(toppingid);
+        response = Models.Main.Toppings.Get();
+
+        response.correct = responseDelete.correct;
+      }
+      catch (Exception ex)
+      {
+        _ILog.LogException(ex.Message);
+        response.correct = false;
+        response.message = "There was an error";
+      }
+      return response;
+    }
   }
 }

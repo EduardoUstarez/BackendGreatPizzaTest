@@ -209,5 +209,34 @@ namespace GreatPizza.Core.DTOs
       }
     }
 
+
+
+
+
+    public class DeleteTopping
+    {
+      public class input
+      {
+        public long toppingid { get; set; }
+      }
+      public class output : Definition.Common
+      {
+      }
+
+      public static output Delete(long _toppingid)
+      {
+        output response = new output();
+
+        Entities.greatpizzaDBContext DB = new Entities.greatpizzaDBContext();
+        Entities.Toppings ToppingFound = DB.Toppings.SingleOrDefault(topping => topping.Toppingid == _toppingid);
+        DB.Toppings.Remove(ToppingFound);
+        DB.SaveChanges();
+
+        response.correct = true;
+
+        return response;
+      }
+    }
+
   }
 }
