@@ -20,15 +20,6 @@ namespace GreatPizza.API.Controllers
     }
 
     /// <summary>
-    /// Generic method to test Rest API
-    /// </summary>
-    [HttpGet]
-    public ActionResult<string> postTest()
-    {
-      return "true";
-    }
-
-    /// <summary>
     /// Method to get a list of pizzas
     /// </summary>
     /// <remarks>
@@ -214,5 +205,41 @@ namespace GreatPizza.API.Controllers
       }
       return response;
     }
+
+
+
+    /// <summary>
+    /// Method to Add a topping
+    /// </summary>
+    /// <param name="addToppingRequest"></param>
+    /// <remarks>
+    /// This method add a topping to the list of toppings
+    ///</remarks>
+    [HttpPost("AddTopping")]
+    public ActionResult<Models.Main.Toppings.Response> AddTopping(Models.Main.AddTopping.Request addToppingRequest)
+    {
+      Models.Main.AddTopping.Response responseAdd = new Models.Main.AddTopping.Response();
+      Models.Main.Toppings.Response response = new Models.Main.Toppings.Response();
+      try
+      {
+        responseAdd = Models.Main.AddTopping.Add(addToppingRequest.toppingdescription);
+        response = Models.Main.Toppings.Get();
+
+        response.correct = responseAdd.correct;
+        
+      }
+      catch (Exception ex)
+      {
+        _ILog.LogException(ex.Message);
+        response.correct = false;
+        response.message = "There was an error";
+      }
+      return response;
+    }
+
+
+
+
+
   }
 }

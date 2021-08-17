@@ -7,5 +7,6 @@ namespace GreatPizza.Core.Entities
     {
         public long Toppingid { get; set; }
         public string Description { get; set; }
+        public int? State { get; set; }
     }
 }

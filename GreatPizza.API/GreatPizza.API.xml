@@ -4,11 +4,6 @@
         <name>GreatPizza.API</name>
     </assembly>
     <members>
-        <member name="M:GreatPizza.API.Controllers.MainController.postTest">
-            <summary>
-            Generic method to test Rest API
-            </summary>
-        </member>
         <member name="M:GreatPizza.API.Controllers.MainController.GetPizzas">
              <summary>
              Method to get a list of pizzas
@@ -68,6 +63,15 @@
              <param name="toppingid"></param>
              <remarks>
              This method delete a topping from the list of toppings
+            </remarks>
+        </member>
+        <member name="M:GreatPizza.API.Controllers.MainController.AddTopping(GreatPizza.API.Models.Main.AddTopping.Request)">
+             <summary>
+             Method to Add a topping
+             </summary>
+             <param name="addToppingRequest"></param>
+             <remarks>
+             This method add a topping to the list of toppings
             </remarks>
         </member>
     </members>

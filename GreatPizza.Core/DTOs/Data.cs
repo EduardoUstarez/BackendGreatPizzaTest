@@ -61,11 +61,13 @@ namespace GreatPizza.Core.DTOs
           using (var context = new Entities.greatpizzaDBContext())
           {
 
-            foreach (var objPizza in context.Toppings)
+          var query = context.Toppings.Where(topping => topping.State == (int) Enumerator.state.Active).ToList();
+
+          foreach (var objTopping in query)
             {
               Definition.Topping item = new Definition.Topping();
-              item.toppingid = objPizza.Toppingid;
-              item.description = objPizza.Description;
+              item.toppingid = objTopping.Toppingid;
+              item.description = objTopping.Description;
 
               response.toppings.Add(item);
 
@@ -229,7 +231,41 @@ namespace GreatPizza.Core.DTOs
 
         Entities.greatpizzaDBContext DB = new Entities.greatpizzaDBContext();
         Entities.Toppings ToppingFound = DB.Toppings.SingleOrDefault(topping => topping.Toppingid == _toppingid);
-        DB.Toppings.Remove(ToppingFound);
+        ToppingFound.State = (int) Enumerator.state.Inactive;   
+        DB.SaveChanges();
+
+
+        response.correct = true;
+
+        return response;
+      }
+    }
+
+
+
+
+    public class AddTopping
+    {
+      public class input
+      {
+        public string toppingdescription { get; set; }
+      }
+      public class output : Definition.Common
+      {
+      }
+
+      public static output Add(string _toppingdescription)
+      {
+        output response = new output();
+
+        Entities.Toppings ToppingToInsert = new Entities.Toppings()
+        {
+          Description = _toppingdescription,
+          State = (int) Enumerator.state.Active,
+        };
+
+        Entities.greatpizzaDBContext DB = new Entities.greatpizzaDBContext();
+        DB.Toppings.Add(ToppingToInsert);
         DB.SaveChanges();
 
         response.correct = true;
