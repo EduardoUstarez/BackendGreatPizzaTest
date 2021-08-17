@@ -152,5 +152,35 @@ namespace GreatPizza.API.Models
         return response;
       }
     }
+
+
+    public class AddToppingToPizza
+    {
+      public class Request
+      {
+        public long pizzaid { get; set; }
+        public long toppingid { get; set; }
+      }
+      public class Response : Models.Common
+      {
+      }
+      public static Response Add(long pizzaid, long toppingid)
+      {
+        Response response = new Response();
+
+        GreatPizza.Core.DTOs.Data.AddToppingToPizza.output dtoAddToppingToPizza = GreatPizza.Core.DTOs.Data.AddToppingToPizza.Add(pizzaid, toppingid);
+
+        response.correct = dtoAddToppingToPizza.correct;
+        response.message = dtoAddToppingToPizza.message;
+
+        return response;
+      }
+    }
+
+
+
+
+
+
   }
 }
