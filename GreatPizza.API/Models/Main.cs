@@ -225,5 +225,31 @@ namespace GreatPizza.API.Models
 
 
 
+    public class DeleteToppingFromPizza
+    {
+      public class Request
+      {
+        public long pizzaid { get; set; }
+        public long toppingid { get; set; }
+      }
+      public class Response : Models.Common
+      {
+        public Models.Pizza pizzaDetail { get; set; } = new Models.Pizza();
+      }
+      public static Response Delete(long pizzaid, long toppingid)
+      {
+        Response response = new Response();
+
+        GreatPizza.Core.DTOs.Data.DeleteToppingFromPizza.output dtoToppingFromPizza = GreatPizza.Core.DTOs.Data.DeleteToppingFromPizza.Delete(pizzaid, toppingid);
+
+        response.correct = dtoToppingFromPizza.correct;
+        response.message = dtoToppingFromPizza.message;
+
+        return response;
+      }
+    }
+
+
+
   }
 }
