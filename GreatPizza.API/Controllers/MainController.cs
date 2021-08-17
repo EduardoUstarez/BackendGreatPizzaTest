@@ -36,7 +36,7 @@ namespace GreatPizza.API.Controllers
       {
         _ILog.LogException(ex.Message);
         response.correct = false;
-        response.message = ex.Message;
+        response.message = "There was an error";
       }
     
       return response;
@@ -59,7 +59,7 @@ namespace GreatPizza.API.Controllers
       {
         _ILog.LogException(ex.Message);
         response.correct = false;
-        response.message = ex.Message;
+        response.message = "There was an error";
       }
       return response;
     }
@@ -83,7 +83,7 @@ namespace GreatPizza.API.Controllers
       {
         _ILog.LogException(ex.Message);
         response.correct = false;
-        response.message = ex.Message;
+        response.message = "There was an error";
       }
       return response;
     }
@@ -103,16 +103,15 @@ namespace GreatPizza.API.Controllers
       try
       {
         responseAdd = Models.Main.AddPizza.Add(addPizzaRequest.pizzadescription);
-        if (responseAdd.correct)
-        {
-          response = Models.Main.Pizzas.Get();
-        }
+        response = Models.Main.Pizzas.Get();
+
+        response.correct = responseAdd.correct;
       }
       catch (Exception ex)
       {
         _ILog.LogException(ex.Message);
         response.correct = false;
-        response.message = ex.Message;
+        response.message = "There was an error";
       }
       return response;
     }
@@ -132,16 +131,16 @@ namespace GreatPizza.API.Controllers
       try
       {
         responseDelete = Models.Main.DeletePizza.Delete(pizzaid);
-        if (responseDelete.correct)
-        {
-          response = Models.Main.Pizzas.Get();
-        }
+        response = Models.Main.Pizzas.Get();
+
+        response.correct = responseDelete.correct;
+        
       }
       catch (Exception ex)
       {
         _ILog.LogException(ex.Message);
         response.correct = false;
-        response.message = ex.Message;
+        response.message = "There was an error";
       }
       return response;
     }
@@ -165,12 +164,14 @@ namespace GreatPizza.API.Controllers
       {
         responseAdd = Models.Main.AddToppingToPizza.Add(addToppingPizzaRequest.pizzaid, addToppingPizzaRequest.toppingid);
         response = Models.Main.PizzaDetail.Get(addToppingPizzaRequest.pizzaid);
+
+        response.correct = responseAdd.correct;
       }
       catch (Exception ex)
       {
         _ILog.LogException(ex.Message);
         response.correct = false;
-        response.message = ex.Message;
+        response.message = "There was an error";
       }
       return response;
     }
