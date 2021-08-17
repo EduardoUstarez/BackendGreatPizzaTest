@@ -201,5 +201,29 @@ namespace GreatPizza.API.Models
 
 
 
+    public class AddTopping
+    {
+      public class Request
+      {
+        public string toppingdescription { get; set; }
+      }
+      public class Response : Models.Common
+      {
+      }
+      public static Response Add(string toppingdescription)
+      {
+        Response response = new Response();
+
+        GreatPizza.Core.DTOs.Data.AddTopping.output dtoAddTopping = GreatPizza.Core.DTOs.Data.AddTopping.Add(toppingdescription);
+
+        response.correct = dtoAddTopping.correct;
+        response.message = dtoAddTopping.message;
+
+        return response;
+      }
+    }
+
+
+
   }
 }

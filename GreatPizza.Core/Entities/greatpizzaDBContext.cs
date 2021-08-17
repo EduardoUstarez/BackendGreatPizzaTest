@@ -74,9 +74,11 @@ namespace GreatPizza.Core.Entities
                 entity.Property(e => e.Description)
                     .HasColumnName("description")
                     .HasMaxLength(300);
+
+                entity.Property(e => e.State).HasColumnName("state");
             });
 
-            modelBuilder.HasSequence("pizza_pizzaid_seq");
+            modelBuilder.HasSequence("pizza_pizzaid_seq").StartsAt(4);
 
             modelBuilder.HasSequence("topping_toppingid_seq");
 
